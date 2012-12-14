@@ -20,11 +20,6 @@ cur_dir=$(pwd)
 
 if [ "$1" != "--help" ]; then
 
-#start screen
-	apt-get install screen -y
-	screen -S lnmp
-
-
 #set main domain name
 
 	domain="vps.rsis.me"
