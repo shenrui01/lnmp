@@ -10,11 +10,11 @@ fi
 
 clear
 echo "========================================================================="
-echo "LNMP V0.9 for Debian VPS ,  Written by Licess "
+echo "LNMP for Debian VPS ,  Written by Licess "
 echo "========================================================================="
 echo "A tool to auto-compile & install Nginx+MySQL+PHP on Linux "
 echo ""
-echo "For more information please visit http://www.lnmp.org/"
+echo "For more information please visit http://rsis.me"
 echo "========================================================================="
 cur_dir=$(pwd)
 
@@ -23,11 +23,11 @@ if [ "$1" != "--help" ]; then
 
 #set main domain name
 
-	domain="www.lnmp.org"
+	domain="rsis.me"
 	echo "Please input domain:"
-	read -p "(Default domain: www.lnmp.org):" domain
+	read -p "(Default domain: rsis.me):" domain
 	if [ "$domain" = "" ]; then
-		domain="www.lnmp.org"
+		domain="rsis.me"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -483,7 +483,7 @@ cp conf/discuzx.conf /usr/local/nginx/conf/discuzx.conf
 cp conf/none.conf /usr/local/nginx/conf/none.conf
 cp conf/wp2.conf /usr/local/nginx/conf/wp2.conf
 cp conf/phpwind.conf /usr/local/nginx/conf/phpwind.conf
-sed -i 's/www.lnmp.org/'$domain'/g' /usr/local/nginx/conf/nginx.conf
+sed -i 's/rsis.me/'$domain'/g' /usr/local/nginx/conf/nginx.conf
 
 rm -f /usr/local/nginx/conf/fcgi.conf
 cp conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf
@@ -501,7 +501,7 @@ cd $cur_dir
 tar zxvf phpmyadmin-latest.tar.gz
 mv phpMyAdmin-3.4.8-all-languages /home/wwwroot/phpmyadmin/
 cp conf/config.inc.php /home/wwwroot/phpmyadmin/config.inc.php
-sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/wwwroot/phpmyadmin/config.inc.php
+sed -i 's/rsisme/rsis.me'$RANDOM'/g' /home/wwwroot/phpmyadmin/config.inc.php
 mkdir /home/wwwroot/phpmyadmin/upload/
 mkdir /home/wwwroot/phpmyadmin/save/
 chmod 755 -R /home/wwwroot/phpmyadmin/
@@ -570,7 +570,7 @@ echo "========================================================================="
 echo "LNMP V0.9 for Debian VPS , Written by Licess "
 echo "========================================================================="
 echo ""
-echo "For more information please visit http://www.lnmp.org/"
+echo "For more information please visit http://rsis.me"
 echo ""
 echo "lnmp status manage: /root/lnmp {start|stop|reload|restart|kill|status}"
 echo "default mysql root password:$mysqlrootpwd"
@@ -589,7 +589,5 @@ echo "========================================================================="
 netstat -ntl
 else
   echo "Sorry,Failed to install LNMP!"
-  echo "Please visit http://bbs.vpser.net/forum-25-1.html feedback errors and logs."
-  echo "You can download lnmp.log from your server,and upload lnmp.log to LNMP Forum."
 fi
 fi
