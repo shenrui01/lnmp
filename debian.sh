@@ -182,11 +182,11 @@ if [ -s nginx-1.2.6.tar.gz ]; then
   wget -c http://nginx.org/download/nginx-1.2.6.tar.gz
 fi
 
-if [ -s mysql-5.1.60.tar.gz ]; then
-  echo "mysql-5.1.60.tar.gz [found]"
+if [ -s mysql-5.5.28.tar.gz ]; then
+  echo "mysql-5.5.28.tar.gz [found]"
   else
-  echo "Error: mysql-5.1.60.tar.gz not found!!!download now......"
-  wget -c http://soft.vpser.net/datebase/mysql/mysql-5.1.60.tar.gz
+  echo "Error: mysql-5.5.28.tar.gz not found!!!download now......"
+  wget -c http://www.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.28.tar.gz/from/http://cdn.mysql.com/
 fi
 
 if [ -s libiconv-1.14.tar.gz ]; then
@@ -305,8 +305,8 @@ groupadd mysql
 useradd -s /sbin/nologin -g mysql mysql
 
 cd $cur_dir
-tar zxvf mysql-5.1.60.tar.gz
-cd mysql-5.1.60/
+tar zxvf mysql-5.5.28.tar.gz
+cd mysql-5.5.28/
 if [ $installinnodb = "y" ]; then
 ./configure --prefix=/usr/local/mysql --with-extra-charsets=complex --enable-thread-safe-client --enable-assembler --with-mysqld-ldflags=-all-static --with-charset=utf8 --enable-thread-safe-client --with-big-tables --with-readline --with-ssl --with-embedded-server --enable-local-infile --with-plugins=innobase
 else
