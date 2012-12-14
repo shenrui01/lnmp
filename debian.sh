@@ -381,6 +381,7 @@ make install
 
 mkdir -p /usr/local/php/etc
 cp php.ini-dist /usr/local/php/etc/php.ini
+sed -i 's/disable_functions =.*/disable_functions =/g' /usr/local/php/etc/php.ini
 strip /usr/local/php/bin/php-cgi
 cd ../
 
@@ -568,9 +569,9 @@ fi
 echo "========================== Check install ================================"
 if [ -s /usr/local/nginx ] && [ -s /usr/local/php ] && [ -s /usr/local/mysql ]; then
 
-echo "Install LNMP V0.9 completed! enjoy it."
+echo "Install LNMP completed! enjoy it."
 echo "========================================================================="
-echo "LNMP V0.9 for Debian VPS , Written by Licess "
+echo "LNMP for Debian VPS , Written by Licess "
 echo "========================================================================="
 echo ""
 echo "For more information please visit http://rsis.me"
