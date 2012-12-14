@@ -66,7 +66,7 @@ chkconfig --level 345 memcached on
 fi
 
 echo "Copy Memcached PHP Test file..."
-cp conf/memcached.php /home/wwwroot/memcached.php
+cp conf/memcached.php /home/www/memcached.php
 
 echo "Starting Memcached..."
 /etc/init.d/memcached start

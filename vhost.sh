@@ -8,22 +8,22 @@ fi
 
 clear
 echo "========================================================================="
-echo "Add Virtual Host for LNMP V0.9  ,  Written by Licess "
+echo "Add Virtual Host for LNMP  ,  Written by Licess "
 echo "========================================================================="
 echo "LNMP is a tool to auto-compile & install Nginx+MySQL+PHP on Linux "
 echo "This script is a tool to add virtual host for nginx "
-echo "For more information please visit http://www.lnmp.org/"
+echo "For more information please visit http://rsis.me/"
 echo ""
 echo "========================================================================="
 
 if [ "$1" != "--help" ]; then
 
 
-	domain="www.lnmp.org"
+	domain="rsis.me"
 	echo "Please input domain:"
-	read -p "(Default domain: www.lnmp.org):" domain
+	read -p "(Default domain: rsis.me):" domain
 	if [ "$domain" = "" ]; then
-		domain="www.lnmp.org"
+		domain="rsis.me"
 	fi
 	if [ ! -f "/usr/local/nginx/conf/vhost/$domain.conf" ]; then
 	echo "==========================="
@@ -48,11 +48,11 @@ if [ "$1" != "--help" ]; then
 	  moredomainame=" $moredomain"
 	fi
 
-	vhostdir="/home/wwwroot/$domain"
+	vhostdir="/home/www/$domain"
 	echo "Please input the directory for the domain:$domain :"
-	read -p "(Default directory: /home/wwwroot/$domain):" vhostdir
+	read -p "(Default directory: /home/www/$domain):" vhostdir
 	if [ "$vhostdir" = "" ]; then
-		vhostdir="/home/wwwroot/$domain"
+		vhostdir="/home/www/$domain"
 	fi
 	echo "==========================="
 	echo Virtual Host Directory="$vhostdir"
@@ -173,9 +173,9 @@ echo "Restart Nginx......"
 /usr/local/nginx/sbin/nginx -s reload
 
 echo "========================================================================="
-echo "Add Virtual Host for LNMP V0.9  ,  Written by Licess "
+echo "Add Virtual Host for LNMP  ,  Written by Licess "
 echo "========================================================================="
-echo "For more information please visit http://www.lnmp.org/"
+echo "For more information please visit http://rsis.me/"
 echo ""
 echo "Your domain:$domain"
 echo "Directory of $domain:$vhostdir"

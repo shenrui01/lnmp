@@ -8,17 +8,17 @@ fi
 
 clear
 echo "========================================================================="
-echo "Add Virtual Host for LNMPA V0.9  ,  Written by Licess "
+echo "Add Virtual Host for LNMPA  ,  Written by Licess "
 echo "========================================================================="
 echo "LNMP is a tool to auto-compile & install Nginx+MySQL+PHP+Apache on Linux "
 echo "This script is a tool to add virtual host for Nginx And Apache "
-echo "For more information please visit http://www.lnmp.org/"
+echo "For more information please visit http://rsis.me/"
 echo ""
 echo "========================================================================="
 
 if [ "$1" != "--help" ]; then
 
-	domain="www.lnmp.org"
+	domain="rsis.me"
 	read -p "Please input domain:" domain
 	if [ "$domain" = "" ]; then
 		echo "Error: Domain Name Can't be empty!!"
@@ -47,11 +47,11 @@ if [ "$1" != "--help" ]; then
 	  moredomainame=" $moredomain"
 	fi
 
-	vhostdir="/home/wwwroot/$domain"
+	vhostdir="/home/www/$domain"
 	echo "Please input the directory for the domain:$domain :"
-	read -p "(Default directory: /home/wwwroot/$domain):" vhostdir
+	read -p "(Default directory: /home/www/$domain):" vhostdir
 	if [ "$vhostdir" = "" ]; then
-		vhostdir="/home/wwwroot/$domain"
+		vhostdir="/home/www/$domain"
 	fi
 	echo "==========================="
 	echo Virtual Host Directory="$vhostdir"
@@ -62,8 +62,8 @@ if [ "$1" != "--help" ]; then
 	ServerAdmin=""
 	read -p "Please input Administrator Email Address:" ServerAdmin
 	if [ "$ServerAdmin" == "" ]; then
-		echo "Administrator Email Address will set to webmaster@example.com!"
-		ServerAdmin="webmaster@example.com"
+		echo "Administrator Email Address will set to webmaster@rsis.me!"
+		ServerAdmin="webmaster@rsis.me"
 	else
 	echo "==========================="
 	echo Server Administrator Email="$ServerAdmin"
@@ -159,7 +159,7 @@ eof
 
 cat >/usr/local/apache/conf/vhost/$domain.conf<<eof
 <VirtualHost *:88>
-ServerAdmin webmaster@example.com
+ServerAdmin webmaster@rsis.me
 php_admin_value open_basedir "$vhostdir:/tmp/:/var/tmp/:/proc/"
 DocumentRoot "$vhostdir"
 ServerName $domain
@@ -187,9 +187,9 @@ echo "Restart Apache......"
 /etc/init.d/httpd restart
 
 echo "========================================================================="
-echo "Add Virtual Host for LNMP V0.9  ,  Written by Licess "
+echo "Add Virtual Host for LNMP  ,  Written by Licess "
 echo "========================================================================="
-echo "For more information please visit http://www.lnmp.org/"
+echo "For more information please visit http://rsis.me/"
 echo ""
 echo "Your domain:$domain $moredomainame"
 echo "Directory of $domain:$vhostdir"
