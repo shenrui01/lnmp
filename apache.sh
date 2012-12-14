@@ -61,11 +61,11 @@ ipv4=`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr 
 
 printf "===================== Check And Download Files =================\n"
 
-if [ -s httpd-2.2.22.tar.gz ]; then
-  echo "httpd-2.2.22.tar.gz [found]"
+if [ -s httpd-2.2.23.tar.gz ]; then
+  echo "httpd-2.2.23.tar.gz [found]"
   else
-  echo "Error: httpd-2.2.22.tar.gz not found!!!download now......"
-  wget -c http://soft.vpser.net/web/apache/httpd-2.2.22.tar.gz
+  echo "Error: httpd-2.2.23.tar.gz not found!!!download now......"
+  wget -c http://www.us.apache.org/dist//httpd/httpd-2.4.3.tar.bz2
 fi
 
 if [ -s mod_rpaf-0.6.tar.gz ]; then
@@ -97,8 +97,8 @@ cp /usr/local/php/etc/php.ini /root/lnmpbackup/
 cp /usr/local/php/etc/php-fpm.conf /root/lnmpbackup/
 
 cd $cur_dir
-tar zxvf httpd-2.2.22.tar.gz
-cd httpd-2.2.22/
+tar zxvf httpd-2.2.23.tar.gz
+cd httpd-2.2.23/
 ./configure --prefix=/usr/local/apache --enable-headers --enable-mime-magic --enable-proxy --enable-so --enable-rewrite --enable-ssl --enable-deflate --enable-suexec --disable-userdir --with-included-apr --with-mpm=prefork --with-ssl=/usr --disable-userdir --disable-cgid --disable-cgi
 make && make install
 cd ..
