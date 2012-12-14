@@ -65,7 +65,7 @@ if [ -s httpd-2.2.23.tar.gz ]; then
   echo "httpd-2.2.23.tar.gz [found]"
   else
   echo "Error: httpd-2.2.23.tar.gz not found!!!download now......"
-  wget -c http://www.us.apache.org/dist//httpd/httpd-2.4.3.tar.gz
+  wget -c http://www.us.apache.org/dist//httpd/httpd-2.2.23.tar.gz
 fi
 
 if [ -s mod_rpaf-0.6.tar.gz ]; then
