@@ -27,11 +27,11 @@ if [ "$1" != "--help" ]; then
 
 #set main domain name
 
-	domain="rsis.me"
+	domain="vps.rsis.me"
 	echo "Please input domain:"
-	read -p "(Default domain: rsis.me):" domain
+	read -p "(Default domain: vps.rsis.me):" domain
 	if [ "$domain" = "" ]; then
-		domain="rsis.me"
+		domain="vps.rsis.me"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -494,7 +494,7 @@ cp conf/discuzx.conf /usr/local/nginx/conf/discuzx.conf
 cp conf/none.conf /usr/local/nginx/conf/none.conf
 cp conf/wp2.conf /usr/local/nginx/conf/wp2.conf
 cp conf/phpwind.conf /usr/local/nginx/conf/phpwind.conf
-sed -i 's/rsis.me/'$domain'/g' /usr/local/nginx/conf/nginx.conf
+sed -i 's/vps.rsis.me/'$domain'/g' /usr/local/nginx/conf/nginx.conf
 
 rm -f /usr/local/nginx/conf/fcgi.conf
 cp conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf
@@ -512,7 +512,7 @@ cd $cur_dir
 tar zxvf phpMyAdmin-3.5.4-all-languages.tar.gz
 mv phpMyAdmin-3.5.4-all-languages /home/www/phpmyadmin/
 cp conf/config.inc.php /home/www/phpmyadmin/config.inc.php
-sed -i 's/rsisme/rsis.me'$RANDOM'/g' /home/www/phpmyadmin/config.inc.php
+sed -i 's/vps.rsis.me/vps.rsis.me'$RANDOM'/g' /home/www/phpmyadmin/config.inc.php
 mkdir /home/www/phpmyadmin/upload/
 mkdir /home/www/phpmyadmin/save/
 chmod 755 -R /home/www/phpmyadmin/
