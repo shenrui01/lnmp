@@ -175,11 +175,11 @@ if [ -s pcre-8.12.tar.gz ]; then
   wget -c http://soft.vpser.net/web/pcre/pcre-8.12.tar.gz
 fi
 
-if [ -s nginx-1.0.15.tar.gz ]; then
-  echo "nginx-1.0.15.tar.gz [found]"
+if [ -s nginx-1.2.6.tar.gz ]; then
+  echo "nginx-1.2.6.tar.gz [found]"
   else
-  echo "Error: nginx-1.0.15.tar.gz not found!!!download now......"
-  wget -c http://soft.vpser.net/web/nginx/nginx-1.0.15.tar.gz
+  echo "Error: nginx-1.2.6.tar.gz not found!!!download now......"
+  wget -c http://nginx.org/download/nginx-1.2.6.tar.gz
 fi
 
 if [ -s mysql-5.1.60.tar.gz ]; then
@@ -469,8 +469,8 @@ cd ../
 ldconfig
 
 cd $cur_dir
-tar zxvf nginx-1.0.15.tar.gz
-cd nginx-1.0.15/
+tar zxvf nginx-1.2.6.tar.gz
+cd nginx-1.2.6/
 ./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6
 make && make install
 cd ../
