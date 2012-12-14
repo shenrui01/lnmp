@@ -47,11 +47,11 @@ if [ "$1" != "--help" ]; then
 	  moredomainame=" $moredomain"
 	fi
 
-	vhostdir="/home/www/$domain"
+	vhostdir="/home/wwwroot/$domain"
 	echo "Please input the directory for the domain:$domain :"
-	read -p "(Default directory: /home/www/$domain):" vhostdir
+	read -p "(Default directory: /home/wwwroot/$domain):" vhostdir
 	if [ "$vhostdir" = "" ]; then
-		vhostdir="/home/www/$domain"
+		vhostdir="/home/wwwroot/$domain"
 	fi
 	echo "==========================="
 	echo Virtual Host Directory="$vhostdir"

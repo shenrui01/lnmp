@@ -23,11 +23,11 @@ if [ "$1" != "--help" ]; then
 
 #set main domain name
 
-	domain="www.lnmp.org"
+	domain="vps.rsis.me"
 	echo "Please input domain:"
-	read -p "(Default domain: www.lnmp.org):" domain
+	read -p "(Default domain: vps.rsis.me):" domain
 	if [ "$domain" = "" ]; then
-		domain="www.lnmp.org"
+		domain="vps.rsis.me"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -175,7 +175,7 @@ if [ -s nginx-1.2.6.tar.gz ]; then
   echo "nginx-1.2.6.tar.gz [found]"
   else
   echo "Error: nginx-1.2.6.tar.gz not found!!!download now......"
-  wget -c wget -c http://nginx.org/download/nginx-1.2.6.tar.gz
+  wget -c http://nginx.org/download/nginx-1.2.6.tar.gz
 fi
 
 if [ -s mysql-5.1.60.tar.gz ]; then
@@ -199,11 +199,11 @@ if [ -s libmcrypt-2.5.8.tar.gz ]; then
   wget -c  http://soft.vpser.net/web/libmcrypt/libmcrypt-2.5.8.tar.gz
 fi
 
-if [ -s phpMyAdmin-3.5.4-all-languages.tar.gz ]; then
-  echo "phpMyAdmin-3.5.4-all-languages.tar.gz [found]"
+if [ -s phpmyadmin-latest.tar.gz ]; then
+  echo "phpmyadmin-latest.tar.gz [found]"
   else
-  echo "Error: phpMyAdmin-3.5.4-all-languages.tar.gz not found!!!download now......"
-  wget -c http://iweb.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/3.5.4/phpMyAdmin-3.5.4-all-languages.tar.gz
+  echo "Error: phpmyadmin-latest.tar.gz not found!!!download now......"
+  wget -c http://soft.vpser.net/datebase/phpmyadmin/phpmyadmin-latest.tar.gz
 fi
 
 if [ -s autoconf-2.13.tar.gz ]; then
@@ -443,16 +443,16 @@ echo "======================== php + php extensions install =================="
 
 echo "========================== nginx install ==============================="
 groupadd www
-useradd -s /sbin/nologin -g www www
+useradd -s /bin/bash -g www www
 
-mkdir -p /home/www
-chmod +w /home/www
+mkdir -p /home/wwwroot
+chmod +w /home/wwwroot
 mkdir -p /home/wwwlogs
 chmod 777 /home/wwwlogs
 touch /home/wwwlogs/nginx_error.log
 
 cd $cur_dir
-chown -R www:www /home/www
+chown -R www:www /home/wwwroot
 
 # nginx
 cd $cur_dir
@@ -489,7 +489,7 @@ rm -f /usr/local/nginx/conf/fcgi.conf
 cp conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf
 echo "==================== nginx install completed ==========================="
 #phpinfo
-cat >/home/www/phpinfo.php<<eof
+cat >/home/wwwroot/phpinfo.php<<eof
 <?
 phpinfo();
 ?>
@@ -498,20 +498,20 @@ eof
 echo "======================= phpMyAdmin install ============================"
 cd $cur_dir
 #phpmyadmin
-tar zxvf phpMyAdmin-3.5.4-all-languages.tar.gz
-mv phpMyAdmin-3.5.4-all-languages /home/www/phpmyadmin/
-cp conf/config.inc.php /home/www/phpmyadmin/config.inc.php
-sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/www/phpmyadmin/config.inc.php
-mkdir /home/www/phpmyadmin/upload/
-mkdir /home/www/phpmyadmin/save/
-chmod 755 -R /home/www/phpmyadmin/
-chown www:www -R /home/www/phpmyadmin/
+tar zxvf phpmyadmin-latest.tar.gz
+mv phpMyAdmin-3.4.8-all-languages /home/wwwroot/phpmyadmin/
+cp conf/config.inc.php /home/wwwroot/phpmyadmin/config.inc.php
+sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/wwwroot/phpmyadmin/config.inc.php
+mkdir /home/wwwroot/phpmyadmin/upload/
+mkdir /home/wwwroot/phpmyadmin/save/
+chmod 755 -R /home/wwwroot/phpmyadmin/
+chown www:www -R /home/wwwroot/phpmyadmin/
 echo "==================== phpMyAdmin install completed ======================"
 
 #prober
-cp conf/p.php /home/www/p.php
+cp conf/p.php /home/wwwroot/p.php
 
-cp conf/index.html /home/www/index.html
+cp conf/index.html /home/wwwroot/index.html
 
 echo "============================add nginx and php-fpm on startup============================"
 #start up
@@ -586,11 +586,12 @@ echo "The path of some dirs:"
 echo "mysql dir:   /usr/local/mysql"
 echo "php dir:     /usr/local/php"
 echo "nginx dir:   /usr/local/nginx"
-echo "web dir :     /home/www"
+echo "web dir :     /home/wwwroot"
 echo ""
 echo "========================================================================="
 /root/lnmp status
 netstat -ntl
+passwd www
 else
   echo "Sorry,Failed to install LNMP!"
   echo "Please visit http://bbs.vpser.net/forum-25-1.html feedback errors and logs."

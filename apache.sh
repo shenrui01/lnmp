@@ -22,11 +22,11 @@ ipv4=`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr 
 
 #set main domain name
 
-	domain="www.lnmp.org"
+	domain="vps.rsis.me"
 	echo "Please input domain:"
-	read -p "(Default domain: www.lnmp.org):" domain
+	read -p "(Default domain: vps.rsis.me):" domain
 	if [ "$domain" = "" ]; then
-		domain="www.lnmp.org"
+		domain="vps.rsis.me"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -160,7 +160,14 @@ make install
 
 mkdir -p /usr/local/php/etc
 cp php.ini-dist /usr/local/php/etc/php.ini
+sed -i 's/disable_functions =.*/disable_functions =/g' /usr/local/php/etc/php.ini
 cd ../
+
+rm -rf /etc/exim4/update-exim4.conf.conf
+rm -rf /etc/mailname
+cp conf/update-exim4.conf.conf /etc/exim4/update-exim4.conf.conf
+cp conf/mailname /etc/mailname
+/etc/init.d/exim4 restart
 
 cd $cur_dir
 tar zxvf memcache-3.0.6.tgz
