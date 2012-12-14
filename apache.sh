@@ -10,23 +10,23 @@ fi
 
 clear
 printf "=======================================================================\n"
-printf "Install Apache for LNMP  ,  Written by Licess \n"
+printf "Install Apache for LNMP V0.9  ,  Written by Licess \n"
 printf "=======================================================================\n"
 printf "LNMP is a tool to auto-compile & install Nginx+MySQL+PHP on Linux \n"
 printf "This script is a tool to install Apache for lnmp \n"
 printf "\n"
-printf "For more information please visit http://rsis.me \n"
+printf "For more information please visit http://www.lnmp.org \n"
 printf "=======================================================================\n"
 cur_dir=$(pwd)
 ipv4=`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"`
 
 #set main domain name
 
-	domain="vps.rsis.me"
+	domain="www.lnmp.org"
 	echo "Please input domain:"
-	read -p "(Default domain: vps.rsis.me):" domain
+	read -p "(Default domain: www.lnmp.org):" domain
 	if [ "$domain" = "" ]; then
-		domain="vps.rsis.me"
+		domain="www.lnmp.org"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -37,8 +37,8 @@ ipv4=`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr 
 	ServerAdmin=""
 	read -p "Please input Administrator Email Address:" ServerAdmin
 	if [ "$ServerAdmin" == "" ]; then
-		echo "Administrator Email Address will set to webmaster@rsis.me!"
-		ServerAdmin="webmaster@rsis.me"
+		echo "Administrator Email Address will set to webmaster@example.com!"
+		ServerAdmin="webmaster@example.com"
 	else
 	echo "==========================="
 	echo Server Administrator Email="$ServerAdmin"
@@ -65,7 +65,7 @@ if [ -s httpd-2.2.23.tar.gz ]; then
   echo "httpd-2.2.23.tar.gz [found]"
   else
   echo "Error: httpd-2.2.23.tar.gz not found!!!download now......"
-  wget -c http://www.us.apache.org/dist//httpd/httpd-2.4.3.tar.bz2
+  wget -c http://www.us.apache.org/dist//httpd/httpd-2.4.3.tar.gz
 fi
 
 if [ -s mod_rpaf-0.6.tar.gz ]; then
@@ -112,8 +112,8 @@ cp $cur_dir/conf/rpaf.conf /usr/local/apache/conf/extra/rpaf.conf
 
 sed -i 's/#ServerName www.example.com:80/ServerName '$domain':88/g' /usr/local/apache/conf/httpd.conf
 sed -i 's/ServerAdmin you@example.com/ServerAdmin '$ServerAdmin'/g' /usr/local/apache/conf/httpd.conf
-sed -i 's/vps.rsis.me/'$domain'/g' /usr/local/apache/conf/extra/httpd-vhosts.conf
-sed -i 's/webmaster@rsis.me/'$ServerAdmin'/g' /usr/local/apache/conf/extra/httpd-vhosts.conf
+sed -i 's/www.lnmp.org/'$domain'/g' /usr/local/apache/conf/extra/httpd-vhosts.conf
+sed -i 's/webmaster@example.com/'$ServerAdmin'/g' /usr/local/apache/conf/extra/httpd-vhosts.conf
 mkdir -p /usr/local/apache/conf/vhost
 cat >>/usr/local/apache/conf/httpd.conf<<EOF
 Include conf/vhost/*.conf
@@ -213,7 +213,7 @@ cd $cur_dir
 cp conf/proxy.conf /usr/local/nginx/conf/proxy.conf
 mv /usr/local/nginx/conf/nginx.conf /root/lnmpbackup/
 cp conf/nginx_a.conf /usr/local/nginx/conf/nginx.conf
-sed -i 's/vps.rsis.me/'$domain'/g' /usr/local/nginx/conf/nginx.conf
+sed -i 's/www.lnmp.org/'$domain'/g' /usr/local/nginx/conf/nginx.conf
 
 echo "Download new Apache init.d file......"
 wget -c http://soft.vpser.net/lnmp/ext/init.d.httpd
@@ -258,5 +258,5 @@ printf "=======================================================================\
 printf "LNMP is a tool to auto-compile & install Nginx+MySQL+PHP on Linux \n"
 printf "This script is a tool to upgrade from lnmp to lnmpa \n"
 printf "\n"
-printf "For more information please visit http://rsis.me \n"
+printf "For more information please visit http://www.lnmp.org \n"
 printf "=======================================================================\n"

@@ -10,23 +10,24 @@ fi
 
 clear
 echo "========================================================================="
-echo "LNMP for Debian VPS ,  Written by Licess "
+echo "LNMP V0.9 for Debian VPS ,  Written by Licess "
 echo "========================================================================="
 echo "A tool to auto-compile & install Nginx+MySQL+PHP on Linux "
 echo ""
-echo "For more information please visit http://rsis.me"
+echo "For more information please visit http://www.lnmp.org/"
 echo "========================================================================="
 cur_dir=$(pwd)
 
 if [ "$1" != "--help" ]; then
 
+
 #set main domain name
 
-	domain="vps.rsis.me"
+	domain="www.lnmp.org"
 	echo "Please input domain:"
-	read -p "(Default domain: vps.rsis.me):" domain
+	read -p "(Default domain: www.lnmp.org):" domain
 	if [ "$domain" = "" ]; then
-		domain="vps.rsis.me"
+		domain="www.lnmp.org"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -174,14 +175,14 @@ if [ -s nginx-1.2.6.tar.gz ]; then
   echo "nginx-1.2.6.tar.gz [found]"
   else
   echo "Error: nginx-1.2.6.tar.gz not found!!!download now......"
-  wget -c http://nginx.org/download/nginx-1.2.6.tar.gz
+  wget -c wget -c http://nginx.org/download/nginx-1.2.6.tar.gz
 fi
 
 if [ -s mysql-5.5.28.tar.gz ]; then
   echo "mysql-5.5.28.tar.gz [found]"
   else
   echo "Error: mysql-5.5.28.tar.gz not found!!!download now......"
-  wget -c http://www.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.28.tar.gz/from/http://cdn.mysql.com/
+  wget -c http://cdn.mysql.com/Downloads/MySQL-5.5/mysql-5.5.28.tar.gz
 fi
 
 if [ -s libiconv-1.14.tar.gz ]; then
@@ -203,13 +204,6 @@ if [ -s phpMyAdmin-3.5.4-all-languages.tar.gz ]; then
   else
   echo "Error: phpMyAdmin-3.5.4-all-languages.tar.gz not found!!!download now......"
   wget -c http://iweb.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/3.5.4/phpMyAdmin-3.5.4-all-languages.tar.gz
-fi
-
-if [ -s p.tar.gz ]; then
-  echo "p.tar.gz [found]"
-  else
-  echo "Error: p.tar.gz not found!!!download now......"
-  wget -c http://soft.vpser.net/prober/p.tar.gz
 fi
 
 if [ -s autoconf-2.13.tar.gz ]; then
@@ -489,7 +483,7 @@ cp conf/discuzx.conf /usr/local/nginx/conf/discuzx.conf
 cp conf/none.conf /usr/local/nginx/conf/none.conf
 cp conf/wp2.conf /usr/local/nginx/conf/wp2.conf
 cp conf/phpwind.conf /usr/local/nginx/conf/phpwind.conf
-sed -i 's/vps.rsis.me/'$domain'/g' /usr/local/nginx/conf/nginx.conf
+sed -i 's/www.lnmp.org/'$domain'/g' /usr/local/nginx/conf/nginx.conf
 
 rm -f /usr/local/nginx/conf/fcgi.conf
 cp conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf
@@ -507,7 +501,7 @@ cd $cur_dir
 tar zxvf phpMyAdmin-3.5.4-all-languages.tar.gz
 mv phpMyAdmin-3.5.4-all-languages /home/www/phpmyadmin/
 cp conf/config.inc.php /home/www/phpmyadmin/config.inc.php
-sed -i 's/vps.rsis.me/vps.rsis.me'$RANDOM'/g' /home/www/phpmyadmin/config.inc.php
+sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/www/phpmyadmin/config.inc.php
 mkdir /home/www/phpmyadmin/upload/
 mkdir /home/www/phpmyadmin/save/
 chmod 755 -R /home/www/phpmyadmin/
@@ -547,6 +541,11 @@ if [ -s /sbin/iptables ]; then
 /sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 /sbin/iptables-save
 fi
+
+echo "============================add nginx and php-fpm on startup============================"
+echo "ulimit -SHn 65535" >>/etc/rc.local
+echo "===========================add nginx and php-fpm on startup finished===================="
+
 echo "===================================== Check install ==================================="
 clear
 if [ -s /usr/local/nginx ]; then
@@ -567,19 +566,15 @@ if [ -s /usr/local/mysql ]; then
   echo "Error: /usr/local/mysql not found!!!"
 fi
 
-echo "============================add nginx and php-fpm on startup============================"
-echo "ulimit -SHn 65535" >>/etc/rc.local
-echo "===========================add nginx and php-fpm on startup finished===================="
-
 echo "========================== Check install ================================"
 if [ -s /usr/local/nginx ] && [ -s /usr/local/php ] && [ -s /usr/local/mysql ]; then
 
-echo "Install LNMP completed! enjoy it."
+echo "Install LNMP V0.9 completed! enjoy it."
 echo "========================================================================="
-echo "LNMP for Debian VPS , Written by Licess "
+echo "LNMP V0.9 for Debian VPS , Written by Licess "
 echo "========================================================================="
 echo ""
-echo "For more information please visit http://rsis.me"
+echo "For more information please visit http://www.lnmp.org/"
 echo ""
 echo "lnmp status manage: /root/lnmp {start|stop|reload|restart|kill|status}"
 echo "default mysql root password:$mysqlrootpwd"
@@ -598,5 +593,7 @@ echo "========================================================================="
 netstat -ntl
 else
   echo "Sorry,Failed to install LNMP!"
+  echo "Please visit http://bbs.vpser.net/forum-25-1.html feedback errors and logs."
+  echo "You can download lnmp.log from your server,and upload lnmp.log to LNMP Forum."
 fi
 fi

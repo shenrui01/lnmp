@@ -8,22 +8,22 @@ fi
 
 clear
 echo "========================================================================="
-echo "Add Virtual Host for LNMP  ,  Written by Licess "
+echo "Add Virtual Host for LNMP V0.9  ,  Written by Licess "
 echo "========================================================================="
 echo "LNMP is a tool to auto-compile & install Nginx+MySQL+PHP on Linux "
 echo "This script is a tool to add virtual host for nginx "
-echo "For more information please visit http://rsis.me/"
+echo "For more information please visit http://www.lnmp.org/"
 echo ""
 echo "========================================================================="
 
 if [ "$1" != "--help" ]; then
 
 
-	domain="rsis.me"
+	domain="www.lnmp.org"
 	echo "Please input domain:"
-	read -p "(Default domain: rsis.me):" domain
+	read -p "(Default domain: www.lnmp.org):" domain
 	if [ "$domain" = "" ]; then
-		domain="rsis.me"
+		domain="www.lnmp.org"
 	fi
 	if [ ! -f "/usr/local/nginx/conf/vhost/$domain.conf" ]; then
 	echo "==========================="
@@ -173,9 +173,9 @@ echo "Restart Nginx......"
 /usr/local/nginx/sbin/nginx -s reload
 
 echo "========================================================================="
-echo "Add Virtual Host for LNMP  ,  Written by Licess "
+echo "Add Virtual Host for LNMP V0.9  ,  Written by Licess "
 echo "========================================================================="
-echo "For more information please visit http://rsis.me/"
+echo "For more information please visit http://www.lnmp.org/"
 echo ""
 echo "Your domain:$domain"
 echo "Directory of $domain:$vhostdir"

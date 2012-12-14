@@ -8,17 +8,17 @@ fi
 
 clear
 echo "========================================================================="
-echo "Add Virtual Host for LNMPA  ,  Written by Licess "
+echo "Add Virtual Host for LNMPA V0.9  ,  Written by Licess "
 echo "========================================================================="
 echo "LNMP is a tool to auto-compile & install Nginx+MySQL+PHP+Apache on Linux "
 echo "This script is a tool to add virtual host for Nginx And Apache "
-echo "For more information please visit http://rsis.me/"
+echo "For more information please visit http://www.lnmp.org/"
 echo ""
 echo "========================================================================="
 
 if [ "$1" != "--help" ]; then
 
-	domain="rsis.me"
+	domain="www.lnmp.org"
 	read -p "Please input domain:" domain
 	if [ "$domain" = "" ]; then
 		echo "Error: Domain Name Can't be empty!!"
@@ -62,8 +62,8 @@ if [ "$1" != "--help" ]; then
 	ServerAdmin=""
 	read -p "Please input Administrator Email Address:" ServerAdmin
 	if [ "$ServerAdmin" == "" ]; then
-		echo "Administrator Email Address will set to webmaster@rsis.me!"
-		ServerAdmin="webmaster@rsis.me"
+		echo "Administrator Email Address will set to webmaster@example.com!"
+		ServerAdmin="webmaster@example.com"
 	else
 	echo "==========================="
 	echo Server Administrator Email="$ServerAdmin"
@@ -159,7 +159,7 @@ eof
 
 cat >/usr/local/apache/conf/vhost/$domain.conf<<eof
 <VirtualHost *:88>
-ServerAdmin webmaster@rsis.me
+ServerAdmin webmaster@example.com
 php_admin_value open_basedir "$vhostdir:/tmp/:/var/tmp/:/proc/"
 DocumentRoot "$vhostdir"
 ServerName $domain
@@ -187,9 +187,9 @@ echo "Restart Apache......"
 /etc/init.d/httpd restart
 
 echo "========================================================================="
-echo "Add Virtual Host for LNMP  ,  Written by Licess "
+echo "Add Virtual Host for LNMP V0.9  ,  Written by Licess "
 echo "========================================================================="
-echo "For more information please visit http://rsis.me/"
+echo "For more information please visit http://www.lnmp.org/"
 echo ""
 echo "Your domain:$domain $moredomainame"
 echo "Directory of $domain:$vhostdir"
