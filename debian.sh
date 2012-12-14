@@ -385,6 +385,13 @@ sed -i 's/disable_functions =.*/disable_functions =/g' /usr/local/php/etc/php.in
 strip /usr/local/php/bin/php-cgi
 cd ../
 
+rm -rf /etc/exim4/update-exim4.conf.conf
+rm -rf /etc/mailname
+cp conf/update-exim4.conf.conf /etc/exim4/update-exim4.conf.conf
+cp conf/mailname /etc/mailname
+/etc/init.d/exim4 restart
+
+
 cd $cur_dir
 rm -f /usr/local/php/etc/php-fpm.conf
 cp conf/php-fpm.conf /usr/local/php/etc/php-fpm.conf
