@@ -572,6 +572,10 @@ if [ -s /usr/local/mysql ]; then
   echo "Error: /usr/local/mysql not found!!!"
 fi
 
+echo "============================add nginx and php-fpm on startup============================"
+echo "ulimit -SHn 65535" >>/etc/rc.local
+echo "===========================add nginx and php-fpm on startup finished===================="
+
 echo "========================== Check install ================================"
 if [ -s /usr/local/nginx ] && [ -s /usr/local/php ] && [ -s /usr/local/mysql ]; then
 
