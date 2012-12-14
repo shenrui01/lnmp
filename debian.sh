@@ -513,8 +513,7 @@ chown www:www -R /home/www/phpmyadmin/
 echo "==================== phpMyAdmin install completed ======================"
 
 #prober
-tar zxvf p.tar.gz
-cp p.php /home/www/p.php
+cp conf/p.php /home/www/p.php
 
 cp conf/index.html /home/www/index.html
 
