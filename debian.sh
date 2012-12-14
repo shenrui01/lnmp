@@ -445,14 +445,14 @@ echo "========================== nginx install ==============================="
 groupadd www
 useradd -s /sbin/nologin -g www www
 
-mkdir -p /home/wwwroot
-chmod +w /home/wwwroot
+mkdir -p /home/www
+chmod +w /home/www
 mkdir -p /home/wwwlogs
 chmod 777 /home/wwwlogs
 touch /home/wwwlogs/nginx_error.log
 
 cd $cur_dir
-chown -R www:www /home/wwwroot
+chown -R www:www /home/www
 
 # nginx
 cd $cur_dir
@@ -489,7 +489,7 @@ rm -f /usr/local/nginx/conf/fcgi.conf
 cp conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf
 echo "==================== nginx install completed ==========================="
 #phpinfo
-cat >/home/wwwroot/phpinfo.php<<eof
+cat >/home/www/phpinfo.php<<eof
 <?
 phpinfo();
 ?>
@@ -499,20 +499,20 @@ echo "======================= phpMyAdmin install ============================"
 cd $cur_dir
 #phpmyadmin
 tar zxvf phpmyadmin-latest.tar.gz
-mv phpMyAdmin-3.4.8-all-languages /home/wwwroot/phpmyadmin/
-cp conf/config.inc.php /home/wwwroot/phpmyadmin/config.inc.php
-sed -i 's/rsisme/rsis.me'$RANDOM'/g' /home/wwwroot/phpmyadmin/config.inc.php
-mkdir /home/wwwroot/phpmyadmin/upload/
-mkdir /home/wwwroot/phpmyadmin/save/
-chmod 755 -R /home/wwwroot/phpmyadmin/
-chown www:www -R /home/wwwroot/phpmyadmin/
+mv phpMyAdmin-3.4.8-all-languages /home/www/phpmyadmin/
+cp conf/config.inc.php /home/www/phpmyadmin/config.inc.php
+sed -i 's/rsisme/rsis.me'$RANDOM'/g' /home/www/phpmyadmin/config.inc.php
+mkdir /home/www/phpmyadmin/upload/
+mkdir /home/www/phpmyadmin/save/
+chmod 755 -R /home/www/phpmyadmin/
+chown www:www -R /home/www/phpmyadmin/
 echo "==================== phpMyAdmin install completed ======================"
 
 #prober
 tar zxvf p.tar.gz
-cp p.php /home/wwwroot/p.php
+cp p.php /home/www/p.php
 
-cp conf/index.html /home/wwwroot/index.html
+cp conf/index.html /home/www/index.html
 
 echo "============================add nginx and php-fpm on startup============================"
 #start up
@@ -582,7 +582,7 @@ echo "The path of some dirs:"
 echo "mysql dir:   /usr/local/mysql"
 echo "php dir:     /usr/local/php"
 echo "nginx dir:   /usr/local/nginx"
-echo "web dir :     /home/wwwroot"
+echo "web dir :     /home/www"
 echo ""
 echo "========================================================================="
 /root/lnmp status
