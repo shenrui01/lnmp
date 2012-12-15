@@ -22,11 +22,11 @@ ipv4=`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr 
 
 #set main domain name
 
-	domain="vps.rsis.me"
+	domain="www.lnmp.org"
 	echo "Please input domain:"
-	read -p "(Default domain: vps.rsis.me):" domain
+	read -p "(Default domain: www.lnmp.org):" domain
 	if [ "$domain" = "" ]; then
-		domain="vps.rsis.me"
+		domain="www.lnmp.org"
 	fi
 	echo "==========================="
 	echo "domain=$domain"
@@ -160,14 +160,7 @@ make install
 
 mkdir -p /usr/local/php/etc
 cp php.ini-dist /usr/local/php/etc/php.ini
-sed -i 's/disable_functions =.*/disable_functions =/g' /usr/local/php/etc/php.ini
 cd ../
-
-rm -rf /etc/exim4/update-exim4.conf.conf
-rm -rf /etc/mailname
-cp conf/update-exim4.conf.conf /etc/exim4/update-exim4.conf.conf
-cp conf/mailname /etc/mailname
-/etc/init.d/exim4 restart
 
 cd $cur_dir
 tar zxvf memcache-3.0.6.tgz
@@ -186,13 +179,14 @@ cd $cur_dir/
 # php extensions
 sed -i 's#extension_dir = "./"#extension_dir = "/usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/"\nextension = "memcache.so"\nextension = "pdo_mysql.so"\n#' /usr/local/php/etc/php.ini
 sed -i 's#output_buffering = Off#output_buffering = On#' /usr/local/php/etc/php.ini
+sed -i 's#;sendmail_path =#sendmail_path = /usr/bin/msmtp -t#g' /usr/local/php/etc/php.ini
 sed -i 's/post_max_size = 8M/post_max_size = 50M/g' /usr/local/php/etc/php.ini
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /usr/local/php/etc/php.ini
 sed -i 's/;date.timezone =/date.timezone = PRC/g' /usr/local/php/etc/php.ini
 sed -i 's/short_open_tag = Off/short_open_tag = On/g' /usr/local/php/etc/php.ini
 sed -i 's/; cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /usr/local/php/etc/php.ini
 sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/php/etc/php.ini
-sed -i 's/disable_functions =.*/disable_functions = passthru,exec,system,chroot,scandir,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_alter,ini_restore,dl,pfsockopen,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,fsocket,fsockopen/g' /usr/local/php/etc/php.ini
+sed -i 's/disable_functions =.*/disable_functions = passthru,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_alter,ini_restore,dl,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,fsocket/g' /usr/local/php/etc/php.ini
 
 if [ `getconf WORD_BIT` = '32' ] && [ `getconf LONG_BIT` = '64' ] ; then
         wget -c http://soft.vpser.net/web/zend/ZendOptimizer-3.3.9-linux-glibc23-x86_64.tar.gz
