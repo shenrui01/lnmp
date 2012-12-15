@@ -544,6 +544,11 @@ if [ -s /sbin/iptables ]; then
 /sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 /sbin/iptables-save
 fi
+
+echo "============================add nginx and php-fpm on startup============================"
+echo "ulimit -SHn 65535" >>/etc/rc.local
+echo "===========================add nginx and php-fpm on startup finished===================="
+
 echo "===================================== Check install ==================================="
 clear
 if [ -s /usr/local/nginx ]; then
