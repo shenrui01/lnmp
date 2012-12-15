@@ -448,6 +448,7 @@ echo "========================== nginx install ==============================="
 groupadd www
 useradd -s /bin/bash -g www www
 
+mkdir -p /home/www
 mkdir -p /home/wwwroot
 chmod +w /home/wwwroot
 mkdir -p /home/wwwlogs
@@ -455,7 +456,7 @@ chmod 777 /home/wwwlogs
 touch /home/wwwlogs/nginx_error.log
 
 cd $cur_dir
-chown -R www:www /home/wwwroot
+chown -R www:www /home
 
 # nginx
 cd $cur_dir
