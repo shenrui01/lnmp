@@ -199,11 +199,11 @@ if [ -s libmcrypt-2.5.8.tar.gz ]; then
   wget -c  http://soft.vpser.net/web/libmcrypt/libmcrypt-2.5.8.tar.gz
 fi
 
-if [ -s phpmyadmin-latest.tar.gz ]; then
-  echo "phpmyadmin-latest.tar.gz [found]"
+if [ -s phpMyAdmin-3.5.4-all-languages.tar.gz ]; then
+  echo "phpMyAdmin-3.5.4-all-languages.tar.gz [found]"
   else
-  echo "Error: phpmyadmin-latest.tar.gz not found!!!download now......"
-  wget -c http://soft.vpser.net/datebase/phpmyadmin/phpmyadmin-latest.tar.gz
+  echo "Error: phpMyAdmin-3.5.4-all-languages.tar.gz not found!!!download now......"
+  wget -c http://iweb.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/3.5.4/phpMyAdmin-3.5.4-all-languages.tar.gz
 fi
 
 if [ -s autoconf-2.13.tar.gz ]; then
@@ -501,8 +501,8 @@ eof
 echo "======================= phpMyAdmin install ============================"
 cd $cur_dir
 #phpmyadmin
-tar zxvf phpmyadmin-latest.tar.gz
-mv phpMyAdmin-3.4.8-all-languages /home/wwwroot/phpmyadmin/
+tar zxvf phpMyAdmin-3.5.4-all-languages.tar.gz
+mv phpMyAdmin-3.5.4-all-languages /home/wwwroot/phpmyadmin/
 cp conf/config.inc.php /home/wwwroot/phpmyadmin/config.inc.php
 sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/wwwroot/phpmyadmin/config.inc.php
 mkdir /home/wwwroot/phpmyadmin/upload/
