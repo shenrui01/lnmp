@@ -218,7 +218,9 @@ cd $cur_dir
 
 service exim4 stop
 apt-get remove -y --purge exim4 exim4-base exim4-daemon-light
+apt-get autoremove -y
 apt-get install -y msmtp
+rm -rf /etc/msmtprc
 cp conf/msmtprc /etc/msmtprc
 
 cd $cur_dir
